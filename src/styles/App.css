@@ -122,6 +122,22 @@ main.container {
     text-align: center;
 }
 
-.react-confirm-alert-button-group{
+.react-confirm-alert-button-group {
     justify-content: center;
+}
+
+.createList {
+    text-align: center;
+}
+
+.h5 {
+    margin: 20px 0;
+}
+
+.list__name {
+    margin: 20px auto 0 auto;
+}
+
+.createList .btn {
+    margin-top: 20px;
 }

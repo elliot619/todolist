@@ -17,12 +17,12 @@ class TodoMain extends React.Component {
         return (
             <main role="main" className="container">
                 {!this.hasList() && <div className="createList">
-                    <label>Wow, no to-do list yet. Start by
+                    <label className="h5">Wow, no to-do list yet. Start by
                         typing it's name</label>
                     <input type="text" maxLength="30" name="listName" value={this.state.listName}
-                           onChange={this.updateState}/>
+                           onChange={this.updateState} className="form-control col-md-5 list__name"/>
+                    <p className="help-block text-danger">{this.state.error}</p>
                     <button className="btn btn-info" onClick={this.createList}>Create list</button>
-                    <p>{this.state.error}</p>
                 </div>}
                 {this.hasList() && <TodoBody/>}
             </main>);
@@ -33,7 +33,7 @@ class TodoMain extends React.Component {
     };
 
     hasList = () => {
-        return this.props.list.name.length > 0;
+        return this.props.list.name && this.props.list.name.length > 0;
     };
 
     createList = () => {

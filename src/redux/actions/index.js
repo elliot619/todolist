@@ -1,6 +1,5 @@
 export function addChild(state, payload) {
-
-    let tmp = {...state.list};
+    let tmp = Object.assign({}, state.list);
 
     if (payload.isGrandchild)
         tmp.children[payload.childId].children.push(payload.child);
@@ -13,14 +12,12 @@ export function addChild(state, payload) {
 }
 
 export function removeChild(state, payload) {
-
-    let tmp = {...state.list};
+    let tmp = Object.assign({}, state.list);
 
     if (payload.isGrandchild)
         tmp.children[payload.parent].children.splice(payload.index, 1);
     else
         tmp.children.splice(payload.index, 1);
-
 
     updateStorage(tmp);
 
@@ -29,13 +26,13 @@ export function removeChild(state, payload) {
 
 
 export function createList(state, payload) {
-    let tmp = {...state};
+    let tmp = Object.assign({}, state);
 
     tmp.list.name = payload.name;
 
     updateStorage(tmp.list);
 
-    return {list: tmp};
+    return tmp;
 }
 
 export function initList() {
@@ -46,6 +43,6 @@ export function initList() {
 }
 
 function updateStorage(list) {
-    //TODO: For purpose of demostration and simplicity I used localStorage to save the list, but of course that a database will be a better option for this
+    //TODO: For purpose of demonstration and simplicity I used localStorage to save the list, but of course that a database will be a better option for this
     localStorage.setItem("list", JSON.stringify(list));
 }
